@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, My Love 💙</title>
+ <link rel="icon" type="image/png" href="./logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0a0f1e, #081229);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #e0f7fa;
+    }
+
+    /* Confetti canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Modal overlay */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      z-index: 5000;
+    }
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Modal content with animation */
+    .modal-content {
+      background: rgba(15, 25, 35, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+      transform: scale(0.7);
+      opacity: 0;
+      animation: popIn 0.6s ease forwards;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* Second modal animation */
+    #modal2 .modal-content {
+      animation: slideFade 0.7s ease forwards;
+    }
+    @keyframes slideFade {
+      from { transform: translateY(60px) scale(0.8); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    /* Headings in stylish font */
+    h2 {
+      font-size: 2rem;
+      font-family: "Great Vibes", cursive;
+      color: #80deea;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      color: #cfd8dc;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #00e5ff, #0097a7);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      box-shadow: 0 0 25px rgba(0, 229, 255, 1);
+      transform: translateY(-2px);
+    }
+
+    /* Pulse animation for "Click me" button */
+    .pulse {
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Celebrate button zoom effect */
+    .celebrate-btn {
+      animation: zoomPulse 2s infinite;
+    }
+    @keyframes zoomPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      color: #00e5ff;
+      animation: floatUp 6s linear forwards;
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(1); opacity: 0.9; }
+      100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    }
+
+    /* Balloons */
+    .balloon {
+      position: fixed;
+      bottom: -60px;
+      width: 36px; height: 46px;
+      border-radius: 60% 60% 60% 60%;
+      background: radial-gradient(circle at 35% 25%, #ffffff, #a7e9f1 30%, #51e0f1 65%, #2cb1c1 100%);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      animation: floatBalloon var(--dur,9s) ease-in infinite;
+      opacity: 0.95;
+      z-index: 1000;
+    }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -28px; left: 50%;
+      width: 2px; height: 30px;
+      background: #8bd9e2;
+      transform: translateX(-50%);
+      opacity: 0.8;
+    }
+    @keyframes floatBalloon {
+      0% {
+        transform: translate(var(--xStart, 0), 0) scale(var(--scale,1));
+        opacity: 0;
+      }
+      8% { opacity: 1; }
+      100% {
+        transform: translate(var(--xEnd, 0), -115vh) scale(var(--scale,1));
+        opacity: 0.9;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- First Modal -->
+  <div class="modal show" id="modal1">
+    <div class="modal-content">
+      <h2>Happy Birthday🎂<br> My Love 💙</h2>
+      <p>On your special day, I just want to remind you how much you mean to me. 💕</p>
+      <p>You are my happiness, my support, and my everything. 🎂✨</p>
+      <p>May this year bring you endless joy, love, and success. 💖</p>
+      <button class="btn pulse" onclick="nextModal()">Click me</button>
+    </div>
+  </div>
+
+  <!-- Second Modal -->
+  <div class="modal" id="modal2">
+    <div class="modal-content">
+      <h2>I have something special for you 💝</h2>
+    <a href="./love.html">
+  <button class="btn celebrate-btn">Celebrate 🎉</button>
+</a>
+
+    </div>
+  </div>
+
+  <script>
+    /* ========= Confetti Burst on Page Load ========= */
+    (function(){
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      const colors = ['#26c6da','#64b5f6','#ffffff','#90caf9','#00e5ff'];
+      let particles = [];
+      let running = false;
+
+      function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+      window.addEventListener('resize', resize); resize();
+
+      function spawnBurst(cx, cy, count=220){
+        particles = [];
+        for(let i=0;i<count;i++){
+          const angle = Math.random()*Math.PI*2;
+          const speed = 4 + Math.random()*6;
+          particles.push({
+            x: cx, y: cy,
+            vx: Math.cos(angle)*speed,
+            vy: Math.sin(angle)*speed - 2,
+            size: 2 + Math.random()*3,
+            color: colors[(Math.random()*colors.length)|0],
+            life: 60 + Math.random()*40
+          });
+        }
+      }
+
+      function tick(){
+        if(!running) return;
+        ctx.clearRect(0,0,W,H);
+        particles.forEach(p=>{
+          p.vy += 0.08;
+          p.vx *= 0.995;
+          p.vy *= 0.995;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= 1;
+
+          ctx.save();
+          ctx.fillStyle = p.color;
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.x+p.y)/60);
+          ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*1.6);
+          ctx.restore();
+        });
+        particles = particles.filter(p=>p.life>0 && p.y < H+50);
+        if(particles.length===0){ running = false; }
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('load', ()=>{ spawnBurst(W/2, H*0.55); running = true; tick(); });
+    })();
+
+    /* ========= Hearts Floating ========= */
+    let heartTimer = null;
+    function startHearts(){
+      heartTimer = setInterval(()=>{
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.textContent = '💙';
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.animationDuration = (4 + Math.random()*3) + 's';
+        h.style.fontSize = (20 + Math.random()*14) + 'px';
+        document.body.appendChild(h);
+        setTimeout(()=> h.remove(), 7000);
+      }, 400);
+    }
+    function stopHearts(){
+      clearInterval(heartTimer);
+      heartTimer = null;
+    }
+    window.addEventListener('load', startHearts);
+
+    /* ========= Balloons Floating ========= */
+    function spawnBalloons(count=10){
+      for(let i=0;i<count;i++){
+        const b = document.createElement('div');
+        b.className = 'balloon';
+        const startX = Math.random()*innerWidth;
+        b.style.left = startX + 'px';
+        const drift = (Math.random()*240 - 120) + 'px';
+        b.style.setProperty('--xStart', '0px');
+        b.style.setProperty('--xEnd', drift);
+        b.style.setProperty('--dur', (8 + Math.random()*5) + 's');
+        b.style.setProperty('--scale', (0.9 + Math.random()*0.6).toFixed(2));
+        b.style.animationDelay = (Math.random()*1.2) + 's';
+        document.body.appendChild(b);
+        setTimeout(()=> b.remove(), 14000);
+      }
+    }
+
+    /* ========= Modal Flow ========= */
+    function nextModal() {
+      stopHearts();
+      document.getElementById("modal1").classList.remove("show");
+      document.getElementById("modal2").classList.add("show");
+      spawnBalloons(12);
+    }
+
+    function closeModal() {
+      document.getElementById("modal2").classList.remove("show");
+    }
+
+    window.nextModal = nextModal;
+    window.closeModal = closeModal;
+  </script>
+</body>
+</html>

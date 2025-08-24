@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, My Love 💙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+ <link rel="icon" type="image/png" href="./logo.png">
+
+  <style>
+    /* ========== INTRO OVERLAY ========== */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg,#0b1221,#101a33);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      color: #e9f3ff;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+    #intro h1 {
+      font-size: clamp(26px,5vw,52px);
+      font-weight: 800;
+      color: #26c6da;
+      text-shadow: 0 0 20px rgba(38,198,218,.6);
+      margin-bottom: 30px;
+      animation: popUp 1.5s ease;
+    }
+    #startBtn {
+      padding: 14px 34px;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      color: #00222a;
+      background: linear-gradient(90deg, #26c6da, #64b5f6);
+      box-shadow: 0 0 25px rgba(100,181,246,.55);
+      animation: pulse 2s infinite;
+    }
+    @keyframes popUp {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    #mainContent { display: none; } /* hidden until intro ends */
+  </style>
+
+  <style>
+    /* ====== Your Original Styles (unchanged) ====== */
+  .card3d .card .balloon {
+  position: absolute;
+  width: 130px;
+  aspect-ratio: 1/1.2;
+  border-radius: 60%;
+  left: 18px;
+  bottom: -20px;
+  background: radial-gradient(circle at 35% 25%, #fff, #a7e9f1 20%, #51e0f1 60%, #2cb1c1 90%);
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+  animation: flyUp 10s linear infinite;
+}
+
+@keyframes flyUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-700px); } /* adjust height as needed */
+}
+@keyframes flyUp {
+  0% { transform: translate(0,0) rotate(-5deg); }
+  25% { transform: translate(10px,-175px) rotate(5deg); }
+  50% { transform: translate(-10px,-350px) rotate(-5deg); }
+  75% { transform: translate(10px,-525px) rotate(5deg); }
+  100% { transform: translate(0,-700px) rotate(0deg); }
+}
+
+    :root {
+      --bg1: #0b1221; 
+      --bg2: #101a33; 
+      --primary: #26c6da; 
+      --accent: #64b5f6; 
+      --glow: 0 0 20px rgba(38,198,218,.55), 0 0 40px rgba(100,181,246,.35);
+      --card: rgba(255, 255, 255, 0.06);
+      --cardBorder: rgba(255,255,255,.14);
+      --text: #e9f3ff;
+      --muted: #b8c6d8;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 20% -10%, #1a2b4a55, transparent),
+                  radial-gradient(900px 500px at 120% 10%, #0a566355, transparent),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
+    }
+   .floaters span {
+      position: absolute; inset: 0; pointer-events: none; filter: blur(0.2px);
+    }
+    .bubble { position: absolute; width: 14px; height: 14px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #8ed9ff 40%, #0ff0 60%);
+      box-shadow: var(--glow);
+      animation: floatUp linear infinite; opacity: .45;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-120vh) scale(1.15); }
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
+      background: linear-gradient(90deg, #0b1221cc, #101a33aa);
+      border-bottom: 1px solid var(--cardBorder);
+    }
+    .nav {
+      max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 12px;
+      padding: 10px 16px;
+    }
+    .brand { font-weight: 800; letter-spacing: .5px; color: var(--primary); text-shadow: var(--glow); }
+    .nav .spacer { flex: 1; }
+    .btn, button {
+      --padx: 16px; --pady: 10px;
+      padding: var(--pady) var(--padx);
+      border: 1px solid var(--cardBorder);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color: var(--text);
+      border-radius: 999px; cursor: pointer; font-weight: 600; letter-spacing: .3px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 6px 30px rgba(0,0,0,.25);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+    .btn.primary { border-color: transparent; background: linear-gradient(90deg, var(--primary), var(--accent)); color: #00222a; }
+
+    /* Hero */
+    .hero {
+      max-width: 1100px; margin: 40px auto; display: grid; gap: 26px; align-items: center; padding: 0 16px;
+      grid-template-columns: 1.2fr .8fr;
+    }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; text-align: center; } }
+
+    .headline { font-size: clamp(28px, 5vw, 56px); line-height: 1.05; font-weight: 800; }
+    .headline .name { color: var(--primary); text-shadow: var(--glow); }
+    .sub { color: var(--muted); max-width: 60ch; }
+
+    .card3d {
+      perspective: 1200px; justify-self: center; position: relative;
+    }
+    .card3d .card {
+      width: min(420px, 86vw); height: 520px; border-radius: 24px; padding: 18px; position: relative; overflow: hidden;
+      background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border: 1px solid var(--cardBorder);
+      box-shadow: 0 12px 60px rgba(0,0,0,.45), var(--glow);
+      transform-style: preserve-3d; transform: rotateX(8deg) rotateY(-10deg);
+      transition: transform .2s ease;
+    }
+    .card3d:hover .card { transform: rotateX(0) rotateY(0); }
+    .confetti-tag {
+      position: absolute; top: 14px; right: 14px; font-size: 12px; color: #01262c;
+      background: linear-gradient(90deg, #9be8f1, #a8c9ff); padding: 6px 10px; border-radius: 999px; font-weight: 700;
+    }
+    .balloon { position: absolute; width: 130px; aspect-ratio: 1/1.2; border-radius: 60% 60% 60% 60%; left: 18px; bottom: -20px;
+      background: radial-gradient(circle at 35% 25%, #fff, #a7e9f1 20%, #51e0f1 60%, #2cb1c1 90%);
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      animation: bob 3.2s ease-in-out infinite;
+    }
+    .balloon::after { content: ""; position: absolute; bottom: -14px; left: 50%; width: 2px; height: 90px; background: #8bd9e2; }
+    @keyframes bob { 50% { transform: translateY(-12px); } }
+
+    .neo-title { position: absolute; bottom: 24px; left: 24px; right: 24px; text-align: center; font-weight: 800; font-size: 28px; letter-spacing: .8px;
+      text-transform: uppercase; color: #e6fbff; text-shadow: 0 0 30px #aef6ff88, 0 0 10px #7be3f6;
+    }
+
+    /* Language ribbon */
+    .lang-switch { display: flex; gap: 8px; align-items: center; }
+    .lang-switch .seg { padding: 6px 10px; border-radius: 999px; cursor: pointer; font-weight: 700; border: 1px solid var(--cardBorder);
+      background: rgba(255,255,255,.06);
+    }
+    .lang-switch .seg.active { background: linear-gradient(90deg, var(--primary), var(--accent)); color: #01262c; border-color: transparent; }
+
+    /* Sections */
+    section { max-width: 1100px; margin: 56px auto; padding: 0 16px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+    .year-card { background: var(--card); border: 1px solid var(--cardBorder); padding: 18px; border-radius: 18px; position: relative; overflow: hidden; }
+    .year-card h3 { margin: 0 0 8px; font-size: 18px; color: var(--primary); }
+    .year-card p { margin: 0; color: var(--muted); }
+    .year-card::before { content:""; position: absolute; inset: -40px -60px auto auto; width: 180px; height: 180px; background: radial-gradient(#8ddff2, transparent 60%); filter: blur(40px); opacity:.25; }
+
+    /* Modal */
+    dialog { width: min(760px, 92vw); border: 1px solid var(--cardBorder); padding: 0; border-radius: 16px; background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); color: var(--text); }
+    dialog::backdrop { background: rgba(0,0,0,.55); backdrop-filter: blur(6px); }
+    .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--cardBorder); }
+    .modal-body { padding: 16px; }
+
+    /* Urdu style */
+    [data-lang="ur"] { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; }
+
+    /* Footer */
+    footer { text-align: center; color: var(--muted); padding: 40px 16px 60px; }
+
+    /* Canvas for confetti */
+    #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 100; }
+    #flyCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 500; /* below intro and modals */
+}
+/* Hover effect for Year Cards (like buttons) */
+.year-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;  /* PC pe maximum size */
+  height: auto;
+  border-radius: 15px;
+  margin-left: -3px;
+}
+
+.year-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.25), 0 0 20px rgba(38,198,218,0.35), 0 0 40px rgba(100,181,246,0.25);
+  background: linear-gradient(160deg, rgba(38,198,218,0.1), rgba(100,181,246,0.05));
+}
+h2.glow-heading {
+  color: #fff; /* ya jo tumhara color ho */
+
+  text-shadow: 0 6px 30px rgba(245, 242, 242, 0.25), 0 0 20px rgba(196, 245, 252, 0.35), 0 0 40px rgba(100,181,246,0.25);;
+}
+
+/* Mobile ke liye responsive adjustment */
+@media (max-width: 768px) {
+  .neo-title{
+    font-size: 1.4rem; /* yahan thoda chhota */
+  }
+}
+
+@media (max-width: 480px) {
+  .neo-title{
+    font-size: 1.2rem; /* aur chhota, very small screens ke liye */
+  }
+}
+.yearr-card{
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  border-radius: 15px;
+  
+}
+.yearr-card :hover{
+    transform: translateY(-4px);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.25), 0 0 20px rgba(38,198,218,0.35), 0 0 40px rgba(100,181,246,0.25);
+  background: linear-gradient(160deg, rgba(38,198,218,0.1), rgba(100,181,246,0.05));
+}
+  </style>
+</head>
+<body>
+
+  <!-- Intro Screen -->
+  <div id="intro">
+    
+<canvas id="flyCanvas"></canvas>
+    <h1>Are you ready for surprise?</h1>
+    <button id="startBtn">Yes 💙</button>
+  </div>
+
+  <!-- Main Content (hidden initially) -->
+  <div id="mainContent">
+    <!-- ===== YOUR EXISTING HTML CODE START ===== -->
+    <canvas id="confetti"></canvas>
+    <div class="floaters" aria-hidden="true"><span id="bubbles"></span></div>
+
+    <header>
+      <nav class="nav">
+        <div class="brand">💙 Birthday for <span id="bf-name-brand">My Love</span></div>
+        <div class="spacer"></div>
+        <div class="lang-switch" role="tablist" aria-label="Language Switcher"></div>
+      </nav>
+    </header>
+
+    <main>
+       <section class="hero">
+      <div>
+        <h1 class="headline" data-i18n-en="Happy Birthday, <span class='name'><br>Handsome .</span>"
+            data-i18n-ur="<span class='name'>[Name]</span>، جنم دن مبارک!" id="title"></h1>
+        <p class="sub" data-i18n-en="Four years down, forever to go. You are my best friend, my calm, and my wild adventure."
+           data-i18n-ur="چار سال گزر گئے، اور پوری زندگی باقی ہے۔ تم میری بہترین دوست، میرا سکون اور میری سب سے خوبصورت مہم ہو۔" id="subtitle"></p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+          <button class="btn primary" id="confettiBtn" data-i18n-en="Click Me" data-i18n-ur="جشن منائیں!">Click Me</button>
+          <button class="btn" id="openLetter" data-i18n-en="Open Love Letter" data-i18n-ur="محبت بھرا خط کھولیں" >Open Love Letter</button>
+        
+        </div>
+      </div>
+      <div class="card3d">
+        <div class="card" id="tilt">
+          <div class="confetti-tag">4 YEARS ✦ TOGETHER</div>
+          <div class="balloon" aria-hidden="true"></div>
+          <div class="neo-title">H A P P Y &nbsp; B I R T H D A Y</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+    <h2 class="glow-heading" style="margin:0 0 12px; font-size:26px;">✨ Our 4-Year Journey 💖</h2>
+<div class="grid">
+  <article class="year-card">
+    <h3>🌸 Year 1 · Beginnings 🌅</h3>
+    <p>👋💞 We said hello, and my world found a new color 🌈✨</p>
+  </article>
+
+  <article class="year-card">
+    <h3>🌱 Year 2 · Growing 🌟</h3>
+    <p>😂📞💌 Inside jokes, long calls, and a million tiny memories 📸💕</p>
+  </article>
+
+  <article class="year-card">
+    <h3>⚡ Year 3 · Stronger 🛡️</h3>
+    <p>🌩️🤝❤️ We faced storms and chose each other, again and again 🔥💍</p>
+  </article>
+
+  <article class="year-card">
+    <h3>🏡 Year 4 · Always ♾️</h3>
+    <p>🤗💖 Together feels like home 🕊️ The best is still ahead 🌟🚀</p>
+  </article>
+</div>
+
+    </section>
+
+    <section id="poemSection" style="display:none;">
+      <div class="year-card" data-lang="ur">
+        <h3 style="margin-bottom:8px;">چھوٹی سی نظم</h3>
+        <p style="font-size:20px; line-height:2;">
+          تم مسکراؤ تو دن نکھر جائے،<br>
+          تم پاس ہو تو دل سنور جائے۔<br>
+          چار برس کی یہ خوب کہانی،<br>
+          اب عمر بھر کا سفر شروع ہو جائے۔
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="glow-heading" style="margin:0 0 12px; font-size:26px;">Buttons just for you💝 </h2>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn" id="memoryBtn">🖼️ View Memory Slots</button>
+        <button class="btn" id="wishBtn">🎂 Birthday Wishes For You</button>
+      </div>
+    </section>
+
+    <!-- Memory Modal -->
+    <dialog id="memModal">
+      <div class="modal-head">
+        <strong>📸 Memory Gallery ❤️</strong>
+        <form method="dialog"><button class="btn">Close</button></form>
+      </div>
+     <div class="modal-body">
+  <div class="grid">
+    <figure class="year-card">
+      <img alt="Add your photo 1" src="./smile..jpg" style="width:100%; border-radius:12px;"/>
+      <figcaption style="color:var(--muted); margin-top:8px;">Your smile here 😊💖</figcaption>
+    </figure>
+    <figure class="year-card">
+      <img alt="Add your photo 2" src="./walk.jpeg" style="width:100%; border-radius:12px;"/>
+      <figcaption style="color:var(--muted); margin-top:8px;">Our walk 🚶‍♂️🚶‍♀️🌸</figcaption>
+    </figure>
+    <figure class="year-card">
+      <img alt="Add your photo 3" src="./sunset.jpeg" style="width:100%; border-radius:12px;"/>
+      <figcaption style="color:var(--muted); margin-top:8px;">That sunset 🌅✨</figcaption>
+    </figure>
+    <figure class="year-card">
+      <img alt="Add your photo 4" src="./us.jpeg" style="width:100%; border-radius:12px;"/>
+      <figcaption style="color:var(--muted); margin-top:8px;">Us 💑💙</figcaption>
+    </figure>
+  </div>
+</div>
+
+    </dialog>
+
+    <!-- Love Letter Modal -->
+    <!-- Love Letter Modal -->
+<!-- Love Letter Modal -->
+<dialog id="letterModal">
+  <div class="modal-head">
+    <strong class="i18n" data-i18n-en="A Love Letter for You" data-i18n-ur="تمہارے نام محبت بھرا خط">A Love Letter for You My life Anas 🌍💖</strong>
+    <form method="dialog"><button class="btn">Close</button></form>
+  </div>
+  <div class="modal-body">
+    <div class="yearr-card">
+      <!-- English version -->
+      <div class="i18n" data-lang="en">
+       <p>💌 My Dearest Love,</p>
+  <p>✨💡 From the moment our paths crossed, you brought light into every corner of my life 🌍💖</p>
+  <p>😄🎶 Your laughter is my melody, your love my sanctuary ⛪💞, and your presence my greatest comfort 🤗💙</p>
+  <p>📸💎 Every memory we have created together is a treasure I will hold forever 🥰</p>
+  <p>🎂🥳 On this special day, I wish you endless joy 🌟, endless smiles 😍, and endless love ❤️</p>
+  <p>✍️🤝 May we continue writing our story 📖, hand in hand 🙌, heart to heart 💓, for all the years to come ♾️</p>
+  <p>Forever yours,<br>💙 Maryam</p>
+      </div>
+
+      
+</dialog>
+
+
+    <!-- Wish Modal (Both Languages) -->
+  <dialog id="wishModal">
+  <div class="modal-head">
+    <strong>🎂✨ Birthday Wishes 💖</strong>
+    <form method="dialog"><button class="btn">Close</button></form>
+  </div>
+  <div class="modal-body">
+    <div class="grid">
+      
+      <!-- Row 1: Original English -->
+      <div class="year-card">
+        <h3>💌 Heartfelt Wish</h3>
+        <p>
+          🎉🎂 Happy Birthday, my love! 💖  
+          Four years with you have been pure magic ✨🌈  
+          Thank you for your patience 🙏, jokes 😂, and all the little moments 📸💕  
+          May your new year bring success 🏆, peace ☮️, and the sweetest surprises 🎁🌟  
+        </p>
+      </div>
+
+      <!-- Row 1: Original Urdu -->
+      <div class="year-card" data-lang="ur">
+        <h3>🌹دل سے دعا</h3>
+        <p>
+          🎂💞 جنم دن مبارک ہو، میری جان!  
+          تمہارے ساتھ چار برس ایک خواب جیسا لگا ✨🌙  
+          اللہ تمہیں خوشیاں 😊، کامیابیاں 🏆 اور سکون دے 🕊️—آمین 🤲  
+        </p>
+      </div>
+
+      <!-- Row 2: New English Poetry -->
+      <div class="year-card">
+        <h3>🌟 Poetic Wish </h3>
+        <p>
+          📖✨ Another year, another smile 😊, another memory to hold 💝  
+          With you, my love, every story turns to gold 💛💍  
+          May laughter 😂 guide you and love ❤️ light your way 🌌  
+          Today 🌞, tomorrow 🌙, and every coming day ♾️  
+        </p>
+      </div>
+
+      <!-- Row 2: New Urdu Poetry -->
+      <div class="year-card" data-lang="ur">
+        <h3>💫 پیار کی زبان 🥀 </h3>
+        <p>
+         تم مسکراؤ تو دن نکھر جائے 😍🌸,<br>
+  تم پاس ہو تو دل سنور جائے ❤️✨۔<br>
+  چار برس کی یہ خوب کہانی 📖💫,<br>
+  اب عمر بھر کا سفر شروع ہو جائے 🚀💍🌹۔
+        </p>
+      </div>
+
+    </div>
+  </div>
+</dialog>
+
+
+    </main>
+
+    <footer>
+      Made with 💙 by <strong>Maryam</strong>
+    </footer>
+
+    <audio id="bgm" preload="auto" loop>
+      <source src="happy-birthday-254480.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+<script>
+  // ===== Intro handling =====
+  const intro = document.getElementById('intro');
+  const mainContent = document.getElementById('mainContent');
+  const startBtn = document.getElementById('startBtn');
+  const bgm = document.getElementById('bgm');
+
+  startBtn.addEventListener('click', () => {
+    intro.classList.add('fadeOut');
+    setTimeout(() => {
+      intro.style.display = 'none';
+      mainContent.style.display = 'block';
+      bgm.play().catch(()=>{});
+      launchConfetti();
+    }, 600); // wait for fade animation
+  });
+
+  // ===== Fade Out Animation =====
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .fadeOut { animation: fadeOut .6s ease forwards; }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ===== Confetti burst =====
+  function launchConfetti() {
+    const duration = 2 * 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      // Simple confetti particles
+      const colors = ['#26c6da','#64b5f6','#81ecec','#00cec9','#74b9ff'];
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: colors
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: colors
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  }
+
+  // ===== Default Title + Subtitle Load =====
+  document.getElementById('title').innerHTML = document.getElementById('title').dataset.i18nEn;
+  document.getElementById('subtitle').innerHTML = document.getElementById('subtitle').dataset.i18nEn;
+
+  // ===== Modals Handling =====
+  const memModal = document.getElementById("memModal");
+  const letterModal = document.getElementById("letterModal");
+  const wishModal = document.getElementById("wishModal");
+
+  document.getElementById("memoryBtn").addEventListener("click", () => memModal.showModal());
+  document.getElementById("openLetter").addEventListener("click", () => letterModal.showModal());
+  document.getElementById("wishBtn").addEventListener("click", () => wishModal.showModal());
+
+  // Confetti button in Hero
+  document.getElementById("confettiBtn").addEventListener("click", launchConfetti);
+  const canvas = document.getElementById("flyCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+const shapes = [];
+const colors = ['#ff6b6b','#ff4757','#feca57','#26c6da','#64b5f6'];
+
+function random(min,max){ return Math.random()*(max-min)+min; }
+
+class Balloon {
+  constructor() {
+    this.x = random(0, canvas.width);
+    this.y = canvas.height + random(50,300);
+    this.size = random(20, 50);
+    this.speed = random(0.5,2);
+    this.color = colors[Math.floor(random(0,colors.length))];
+    this.angle = random(0, Math.PI*2);
+    this.type = Math.random() > 0.5 ? 'heart' : 'balloon';
+  }
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    if(this.type === 'heart'){
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -this.size/2, -this.size/2, -this.size, -this.size, -this.size/2);
+      ctx.bezierCurveTo(-this.size, 0, 0, this.size/2, 0, this.size);
+      ctx.bezierCurveTo(0, this.size/2, this.size, 0, this.size, -this.size/2);
+      ctx.bezierCurveTo(this.size/2, -this.size, 0, -this.size/2, 0, 0);
+      ctx.fill();
+    } else {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.ellipse(0,0,this.size*0.6,this.size,0,0,Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0,this.size);
+      ctx.lineTo(0,this.size+40);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+  update() {
+    this.y -= this.speed;
+    this.x += Math.sin(this.angle)*0.5;
+    this.angle += 0.01;
+    if(this.y < -50) { 
+      this.y = canvas.height + 50;
+      this.x = random(0,canvas.width);
+    }
+  }
+}
+
+for(let i=0;i<35;i++){ shapes.push(new Balloon()); }
+
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  shapes.forEach(s => { s.update(); s.draw(); });
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+</script>
+
+<!-- ADD CONFETTI LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+
+
+
+</body>
+</html>
